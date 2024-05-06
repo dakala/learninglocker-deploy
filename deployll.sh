@@ -459,6 +459,11 @@ function base_install ()
     fi
 
     cd ${WEBAPP_SUBDIR}
+
+    output "[dakala] Attempt to patch LL deploy script"
+    curl https://patch-diff.githubusercontent.com/raw/LearningLocker/learninglocker/pull/1600.patch | git apply  
+    output "[dakala] Finished applying patch"
+    
     GIT_REV=`git rev-parse --verify HEAD`
     if [[ ! -f .env ]]; then
         cp .env.example .env
